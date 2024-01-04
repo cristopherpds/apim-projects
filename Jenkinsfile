@@ -6,7 +6,12 @@ pipeline {
     }
     
     stages {
-        stage('Preparation: Clone or Pull Git repo') {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        /*stage('Preparation: Clone or Pull Git repo') {
             steps {
                 script {
                     def folderPath = "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\${JOB_NAME}\\apim-projects"
@@ -23,7 +28,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
 
         stage('Build Packaging') {
             steps {
