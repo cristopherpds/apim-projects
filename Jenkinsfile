@@ -5,7 +5,7 @@ pipeline {
         jfrog 'jfrog-cli'
     }
     
-    stages {
+    /*stages {
         stage('Preparation: Clone or Pull Git repo') {
             steps {
                 script {
@@ -23,7 +23,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
 
         stage('Build Packaging') {
             steps {
@@ -32,7 +32,7 @@ pipeline {
                     mkdir "%WORKSPACE%\\APIManager\\target"
                     setlocal enabledelayedexpansion
                     set "projectsToAdd="
-                    for /D %%i in ("%WORKSPACE%\\apim-projects\\*") do (
+                    for /D %%i in ("%WORKSPACE%\\pr*") do (
                         set "projectsToAdd=!projectsToAdd! "%%i""
                     )
                     projpack.bat --create --passphrase-none --name deployPack --type fed --add !projectsToAdd! --projpass-none --dir "%WORKSPACE%\\APIManager\\target"
